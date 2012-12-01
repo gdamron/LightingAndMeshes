@@ -1,0 +1,64 @@
+Grant Damron 0466344
+CS 6533 - Project 2
+
+=============================================================================
+This is a template description file.  Please fill in by replacing the []'s
+with relevant content (write a *single* sentence description for each method,
+bug, extension, etc...).  Then, remove any leftover []'s.
+=============================================================================
+
+Incomplete parts:
+-----------------
+  - none
+
+Bugs in code:
+-------------
+  - When only "Draw wireframe" and "Draw silhouettes" are checked, a black
+    checkerboard is drawn around the wireframe.
+
+Extensions/extra credit completed:
+----------------------------------
+  - torus
+  - wireframe depth adjustment
+  - phong model
+  - draw vertex normals
+
+================================================================
+
+Methods completed or changed (Java and GLSL)
+--------------------------------------------
+
+Ellipsoid.java
+- evalPosition(): compute ellipsoid position from u,v
+- evalNormal():   compute ellipsoid normal vector from u,v
+
+Torus.java
+- evalPosition(): compute ellipsoid position from u,v
+- evalNormal():   compute ellipsoid normal vector from u,v
+
+ellipsoid.vp (GLSL)
+- ellipsoidPosition(): compute ellipsoid position from u,v
+- ellipsoidNormal():   compute ellipsoid normal vector from u,v
+- main()
+
+illum.fp (GLSL)
+- toonShade(): toon shading effect
+- main(): implement both Blinn-Phong and Phong shading
+
+torus.vp (GLSL)
+- torusPosition(): compute ellipsoid position from u,v
+- torusNormal():   compute ellipsoid normal vector from u,v
+- main()
+
+PolyMesh.java
+- computeAllNormals(): uses algorithm in slides to compute
+    normals for each vertex individually and each polygon
+
+Shape.java
+- draw(): draw the shape according to parameters the user selects
+- drawPolygons(): draw with either smooth or flat shading
+- drawWireframe(): draw the shapes wireframe only
+- setVertexNormals(): computes normals for each vertex. created
+    before computeAllNormals() was implemented and is not used
+- drawNormals(): draw short vertex normals for each vertex
+

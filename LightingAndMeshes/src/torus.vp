@@ -1,0 +1,45 @@
+/*
+ * Torus vertex shader
+ * Compute vertex and normal using u-v's in gl_Vertex and gl_Normal
+ */
+
+// Send to fragment shader: position and normal (in eye coordinates)
+varying vec4 pos;
+varying vec3 norm;
+
+// Torus parameters
+uniform float outRad, inRad;
+
+// Position at (u,v) on a torus
+vec4 torusPosition(float u, float v)
+{
+	float a = (outRad-inRad)/2.0;
+	float c = inRad + a;
+	float x = (c + a * cos(v)) * cos(u);
+	float y = (c + a * cos(v)) * sin(u);
+	float z = a * sin(v);
+    return vec4(x, y, z, 1.0);
+}
+
+// Normal vector at (u,v) on an ellipsoid
+vec3 torusNormal(float u, float v)
+{
+    return vec3(cos(u)*cos(v), sin(u)*cos(v), sin(v));
+}
+
+void main()
+{
+    
+    vec4 my_Vertex = torusPosition(gl_Vertex.x,gl_Vertex.y);
+    vec3 my_Normal = torusNormal(gl_Normal.x,gl_Normal.y);
+    
+
+    // For fragment shader
+    pos  = gl_ModelViewMatrix * my_Vertex;
+    norm = gl_NormalMatrix    * my_Normal;
+
+    // Use computed vertex position
+    gl_Position = gl_ModelViewProjectionMatrix * my_Vertex;
+    // Pass color to the fragment shader
+    gl_FrontColor = gl_Color;
+}
